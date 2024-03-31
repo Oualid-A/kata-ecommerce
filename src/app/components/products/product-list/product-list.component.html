@@ -1,0 +1,7 @@
+<ng-container *ngIf="products$; else elseTemplate">
+    <kep-product-card [products]="products$" />
+</ng-container>
+<ng-template #elseTemplate>
+    <div class="loader">loading...</div> 
+</ng-template>
+

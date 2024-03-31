@@ -1,3 +1,29 @@
-<h1 class="text-3xl font-bold underline">
-  Hello world!
-</h1>
+<div>
+    <mat-toolbar class="bg-transparent hover:bg-[#f7f4f2]  ">
+        <mat-toolbar-row class="flex justify-between items-center py-4">
+            <div>
+                <span class="material-symbols-outlined text-3xl cursor-pointer" (click)="toggleCart()"
+                    [matBadge]="cartItemCount$ | async" matBadgeColor="accent" matBadgeSize="small" matBadgePosition="above after">
+                    shopping_cart
+                </span>
+            </div>
+            <span class="contents text-2xl md:text-4xl font-bold tracking-widest">
+                ACHRIF
+            </span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-sidenav-container fxFlexFill>
+        <mat-sidenav #sidenav mode="over" [(opened)]="showCart" class="w-80 bg-white">
+            <mat-nav-list class="z-50 h-[700px] overflow-hidden">
+                <a (click)="sidenav.toggle()" href="" mat-list-item>
+                    <span class="material-symbols-outlined">close</span>
+                </a>
+                <kep-shopping-cart />
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content fxFlexFill class="bg-[#f7f4f2]">
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

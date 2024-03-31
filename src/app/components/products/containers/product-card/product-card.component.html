@@ -1,0 +1,14 @@
+
+  <!-- my Products Card  -->
+  <div class="grid grid-cols-4 max-xl:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 p-4 gap-8 self-center  max-xl:w-full w-[90%] m-auto" >
+    <mat-card class="space-y-2 px-5 py-2 bg-[#ede8e5] rounded-2xl shadow-none w-auto " *ngFor="let prod of products | async " >
+        <img mat-card-image src={{prod.image}} alt="Photo of a Shiba Inu" class="mix-blend-multiply w-auto	self-center object-contain h-52  rounded-t-lg" >
+        <mat-card-content class="bg-[#ede8e5]">
+            <h1 class="font-medium text-xl  text-justify hover:underline hover:cursor-pointer">{{prod.title}}</h1>
+            <h1 class="mt-2">{{prod.price}} MAD</h1>
+        </mat-card-content>
+        <mat-card-actions class="bg-[#ede8e5] border-4 rounded-2xl ">
+          <button mat-button (click)="addToCart(prod)" class="rounded-3xl text-white absolute bottom-4 m-auto bg-black w-[80%]">Add to cart</button>
+        </mat-card-actions>
+      </mat-card>
+  </div>

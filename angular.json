@@ -8,7 +8,7 @@
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "kep",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
