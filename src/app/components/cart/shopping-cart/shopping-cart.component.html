@@ -1,0 +1,22 @@
+<div class="p-4 h-screen">
+  <header class="border-b-2 border-gray-600   p-2">
+    <h1 class="display-4 text-2xl font-medium">Shopping Cart</h1>
+  </header>
+  <main class="overflow-y-auto py-4">
+    <div *ngFor="let item of items$ | async" class="flex justify-start items-center space-x-4 border-b-2 py-3">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{ item.title }}</mat-card-title>
+            <mat-card-subtitle> {{ item.price }} MAD</mat-card-subtitle>
+            <img mat-card-md-image [src]="item.image"   alt="Image of a product">
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          <button (click)="removeItem(item.id)" class="bg-black text-white px-4 py-1 rounded-3xl ">Remove</button> 
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </main>
+</div>
+
