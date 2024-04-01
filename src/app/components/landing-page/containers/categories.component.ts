@@ -22,10 +22,11 @@ import { ProductsService } from '../../products/products.service';
           <mat-label>Category</mat-label>
           <mat-select
             [(value)]="selectedCategory"
-            class="w-[100vh]"
             (selectionChange)="applyFilter(selectedCategory)"
-            
           >
+          <mat-option value="All">
+             All
+            </mat-option>
             <mat-option *ngFor="let category of categories$ | async " [value]="category">
               {{ category }}
             </mat-option>

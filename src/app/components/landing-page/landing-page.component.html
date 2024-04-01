@@ -5,8 +5,11 @@
         </span>
     </div>
 </div>
-<div class="flex max-md:flex-col max-md:items-start w-[90%] m-auto items-center">
-    <kep-categories  (categorySelected)="onCategorySelected($event)"/>
-    <kep-serch-form (searchChanged)="onSearchChanged($event)"/>
+<div class="flex max-md:flex-col max-md:items-start w-[90%] m-auto max-[820px]:flex-col items-center">
+    <div class="flex w-full max-sm:flex-col ">
+        <kep-categories  (categorySelected)="onCategorySelected($event)" class="w-1/2 max-md:w-full"/>
+        <kep-price (priceSelected)="onPriceSelected($event)" class="w-1/2 max-md:w-full"/>
+    </div>
+    <kep-serch-form (searchChanged)="onSearchChanged($event)" class="w-full"/>
 </div>
-<kep-product-list  [category]="selectedCategory" [searchQuery]="searchQuery"/>
+<kep-product-list  [category]="selectedCategory" [price]="selectedPrice" [searchQuery]="searchQuery"/>

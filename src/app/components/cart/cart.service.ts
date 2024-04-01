@@ -3,10 +3,12 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Product } from 'src/app/shared/models/product.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
-  private itemsInCartSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+  private itemsInCartSubject: BehaviorSubject<Product[]> = new BehaviorSubject<
+    Product[]
+  >([]);
 
   constructor() {
     const itemsInCart = JSON.parse(localStorage.getItem('cartItems') || '[]');
@@ -15,16 +17,17 @@ export class CartService {
 
   public addToCart(item: Product) {
     let currentItems = this.itemsInCartSubject.value;
+    
     currentItems.push(item);
     this.itemsInCartSubject.next(currentItems);
-    this.saveItemsToLocalStorage(currentItems);
+    localStorage.setItem('cartItems', JSON.stringify(currentItems));
   }
 
   public removeFromCart(index: number) {
     let currentItems = this.itemsInCartSubject.value;
-    currentItems.splice(index, 1);
-    this.itemsInCartSubject.next(currentItems);
-    this.saveItemsToLocalStorage(currentItems);
+    const myItems = currentItems.filter((item) => item.id !== index);
+    this.itemsInCartSubject.next(myItems);
+    localStorage.setItem('cartItems', JSON.stringify(myItems));
   }
 
   public clearCart() {
@@ -36,12 +39,9 @@ export class CartService {
     return this.itemsInCartSubject.asObservable();
   }
 
-  private saveItemsToLocalStorage(items: Product[]) {
-    localStorage.setItem('cartItems', JSON.stringify(items));
-  }
   public getCartItemCount(): Observable<number> {
-    return this.itemsInCartSubject.asObservable().pipe(
-      map(items => items.length)
-    );
+    return this.itemsInCartSubject
+      .asObservable()
+      .pipe(map((items) => items.length));
   }
 }

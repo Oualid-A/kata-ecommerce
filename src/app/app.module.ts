@@ -13,6 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { HttpClientModule } from '@angular/common/http';
 import { ShoppingCartComponent } from './components/cart/shopping-cart/shopping-cart.component';
+import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
   },
 ];
 @NgModule({
-  declarations: [AppComponent,  ],
+  declarations: [AppComponent, ProductDetailsComponent,  ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),

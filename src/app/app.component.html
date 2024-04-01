@@ -15,10 +15,10 @@
 
     <mat-sidenav-container fxFlexFill>
         <mat-sidenav #sidenav mode="over" [(opened)]="showCart" class="w-80 bg-white">
-            <mat-nav-list class="z-50 h-[700px] overflow-hidden">
-                <a (click)="sidenav.toggle()" href="" mat-list-item>
+            <mat-nav-list class="z-50">
+                <div (click)="sidenav.toggle()" href="" mat-list-item class="right-0 absolute top-3">
                     <span class="material-symbols-outlined">close</span>
-                </a>
+                </div>
                 <kep-shopping-cart />
             </mat-nav-list>
         </mat-sidenav>
