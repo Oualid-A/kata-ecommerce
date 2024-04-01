@@ -5,6 +5,8 @@ import { CartService } from '../cart.service';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { MatCard, MatCardModule } from '@angular/material/card';
 import { NgModel, ReactiveFormsModule } from '@angular/forms';
+import { CartItem } from 'src/app/shared/models/cartItems.model';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'kep-shopping-cart',
@@ -15,11 +17,12 @@ import { NgModel, ReactiveFormsModule } from '@angular/forms';
     AsyncPipe,
     MatCardModule,
     NgIf,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    MatIconModule
+  ],
 })
 export class ShoppingCartComponent {
-  items$: Observable<Product[]>;
+  items$: Observable<CartItem[]>;
   private readonly cartService= inject(CartService);
   constructor() {
     this.items$ = this.cartService.getItems();
@@ -30,5 +33,15 @@ export class ShoppingCartComponent {
  
   clearCart(){
     this.cartService.clearCart();
+  }
+  increaseQuantity(id: number){
+    this.cartService.increaseQuantity(id);
+  }
+  decreaseQuantity(id: number){
+    this.cartService.decreaseQuantity(id);
+  }
+  checkout(){
+    console.log("Checkout");
+    
   }
 }

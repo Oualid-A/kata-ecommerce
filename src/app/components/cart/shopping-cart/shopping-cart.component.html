@@ -1,5 +1,5 @@
 <div class="p-4 h-screen">
-  <header class="border-b-2 border-gray-600   p-2">
+  <header class="border-b-2 border-gray-600  flex justify-between items-center  p-2">
     <h1 class="display-4 text-2xl font-medium">Shopping Cart</h1>
   </header>
   <main class="overflow-y-auto py-4">
@@ -8,22 +8,29 @@
         <mat-card class="shadow-none" :key="item.id">
           <mat-card-header>
             <mat-card-title-group>
-              <mat-card-title>{{ item.title }}</mat-card-title>
-              <mat-card-subtitle> {{ item.price }} MAD</mat-card-subtitle>
-              <img mat-card-md-image [src]="item.image" alt="Image of a product">
+              <mat-card-title>{{ item.product.title }}</mat-card-title>
+              <mat-card-subtitle> {{ item.product.price }} MAD</mat-card-subtitle>
+              <img mat-card-md-image [src]="item.product.image" alt="Image of a product">
             </mat-card-title-group>
           </mat-card-header>
-          <mat-card-content>
-            <button (click)="removeItem(item.id)"
-              class="bg-white text-black border-2 hover:text-white hover:bg-black border-black px-4 py-1 rounded-3xl ">Remove</button>
+          <mat-card-content class="flex justify-start space-x-3 items-center">
+
+            <div
+              class="flex justify-center items-center space-x-2 bg-white text-black border-2 border-black rounded-lg px-2 py-1 ">
+              <button (click)="increaseQuantity(item.product.id)" class="flex"> <mat-icon>add</mat-icon> </button>
+              <div class="flex">
+                {{item.quantity}}
+              </div>
+              <button (click)="decreaseQuantity(item.product.id)" class="flex"
+                [disabled]="item.quantity <= 1"><mat-icon>remove</mat-icon></button>
+            </div>
+            <button (click)="removeItem(item.product.id)" class="underline leading-6 sepia ">Remove</button>
           </mat-card-content>
         </mat-card>
       </div>
-      <div class="flex justify-center items-center space-x-4  py-3 w-full">
-        <button (click)="clearCart()" class="bg-black text-white px-4 py-1 rounded-3xl w-full ">Clear Cart</button>
-      </div>
+
     </article>
-    
+
     <div *ngIf="!(items$ | async)?.length " class="flex justify-center flex-col items-center">
       <p>Your cart is currently empty.
       </p>
@@ -32,3 +39,18 @@
     </div>
   </main>
 </div>
+<footer class="bg-[#f2efec] w-full left-0 right-0 p-4 space-y-2">
+  <div class="flex justify-between items-center border-b-2 py-2 ">
+    <h1 class="text-base font-normal">Total: </h1>
+    <h1 class="text-2xl font-semibold">200 MAD</h1>
+  </div>
+  <div class="">
+    <p class="text-[13px]">Tax included and shipping calculated at checkout</p>
+  </div>
+  <div class="flex items-center w-full space-x-4">
+    <button (click)="clearCart()"
+      class="bg-transparent text-black border-2 border-black rounded-md px-4 py-3 w-full ">Clear Cart</button>
+    <button (click)="checkout()" class="bg-black text-white px-4 py-3 rounded-md w-full">Checkout</button>
+  </div>
+
+</footer>

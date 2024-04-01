@@ -20,6 +20,7 @@ export class ProductsService {
   readonly #_getAllProducts = this.#_api + '/products';
   readonly #_getProductsByCategory = this.#_api + '/products/category/';
   readonly #_getCategories = this.#_api + '/products/categories';
+  readonly #_getProductById = this.#_api + '/products/';
 
   readonly #_http = inject(HttpClient);
 
@@ -33,6 +34,17 @@ export class ProductsService {
   getAllProducts(): Observable<Product[]> {
     return this.#_http.get<Product[]>(this.#_getAllProducts).pipe(
       map((products: Product[]) => {
+        return products;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return this.handleError(error);
+      })
+    );
+  }
+
+  getProductById(id: number): Observable<Product> {
+    return this.#_http.get<Product>(this.#_getProductById + id ).pipe(
+      map((products: Product) => {
         return products;
       }),
       catchError((error: HttpErrorResponse) => {

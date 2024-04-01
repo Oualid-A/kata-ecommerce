@@ -35,17 +35,18 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {    
     this.products$ = combineLatest([
       this.productService.getAllProducts(),
-      this._category.asObservable().pipe(startWith('')),
-      this._searchQuery.asObservable().pipe(startWith('')),
-      this._price.asObservable().pipe(startWith(''))
+      this._category.asObservable(),
+      this._searchQuery.asObservable(),
+      this._price.asObservable()
     ]).pipe(
-      map(([products, category, searchQuery, price]) => 
-        products.filter(product => 
-          (category === '' || product.category === category || category==='All') &&
+      map(([products, category, searchQuery, priceRange]) => {
+        const [minPrice, maxPrice] = priceRange.split('-').map(p => parseFloat(p));
+        return products.filter(product => 
+          (category === '' || product.category === category || category === 'All') &&
           (searchQuery === '' || product.title.toLowerCase().includes(searchQuery.toLowerCase())) && 
-          (price === '' || product.price > parseFloat(price.split(' ')[0]) || product.price < parseFloat(price.split(' ')[price.length - 2]))
-        )
-      )
+          (!priceRange || (product.price >= minPrice && product.price <= maxPrice) || priceRange === 'All')
+        );
+      })
     );
   }
 }

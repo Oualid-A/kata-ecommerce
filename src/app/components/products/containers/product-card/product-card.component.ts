@@ -3,6 +3,7 @@ import { Component, Input, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CartService } from 'src/app/components/cart/cart.service';
 import { Product } from 'src/app/shared/models/product.model';
@@ -18,16 +19,12 @@ import { Product } from 'src/app/shared/models/product.model';
 export class ProductCardComponent {
   @Input() products !: Observable<Product[]>;
   @Input() prod!: Product;
-  //quantity: number = 0;
   private cartService = inject(CartService) ;
-  
-  // increment(){
-  //   this.quantity++;
-  // }
-  // decrement(){
-  //   this.quantity--;
-  // }
+  private router = inject(Router) ;
   addToCart(product: Product) {
     this.cartService.addToCart(product);
+  }
+  showDetails(product: Product){
+    this.router.navigate(['/details', product.id]);
   }
 }

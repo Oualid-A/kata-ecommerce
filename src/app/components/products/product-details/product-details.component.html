@@ -1,1 +1,83 @@
-<p>product-details works!</p>
+<div class="flex flex-col pb-14 bg-white  " *ngIf="product">
+    <div class="self-center mt-20 w-full max-w-[1201px] max-md:mt-10 max-md:max-w-full ">
+        <div class="flex gap-5 max-md:flex-col max-md:gap-0 ">
+            <div class="flex flex-col w-6/12 max-md:ml-0 max-md:w-full h-auto ">
+                <div class="flex flex-col px-15  top-0 max-md:mt-10  max-md:max-w-full sticky  ">
+                    <div class="mb-4">
+                        <img src={{product.image}} alt="" srcset=""
+                        class="mix-blend-multiply self-center object-contain h-auto  rounded-t-lg w-[70%] max-lg:w-[60%]  max-md:w-[80%] m-auto">
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+                <div class="flex flex-col max-md:mt-10 max-md:max-w-full">
+                    <div class="flex flex-col p-2 max-w-full w-[426px]">
+                        <div>
+                            <div class="text-xl font-light text-stone-500 max-md:max-w-full">
+                                ACHRIF Store
+                            </div>
+                            <div
+                                class=" text-4xl font-semibold text-black leading-[43px] tracking-[2.16px]  max-md:max-w-full max-sm:text-lg">
+                                {{ product.title }}
+                            </div>
+                            <div class="flex justify-start items-center  max-md:flex-wrap">
+                                <div
+                                    class=" my-auto text-4xl font-semibold text-black leading-[53px] tracking-[2.16px]">
+                                    <span class="text-2xl mr-4 max-sm:text-base">{{ product.price }} MAD</span>
+                                </div>
+                                <div
+                                    class="max-sm:hidden justify-center h-8 items-center px-2 text-lg tracking-widest whitespace-nowrap bg-white border border-solid border-stone-400  text-neutral-400 max-md:pr-5">
+                                    Sale
+                                </div>
+                            </div>
+                            <div class=" text-base tracking-wider max-sm:text-sm text-black  leading-[23px] max-md:max-w-full">
+                                <span class="font-light  ">Tax included. </span><a href="https://afrikabrand.com/policies/shipping-policy" class="font-light underline "
+                                    target="_blank">
+                                    Shipping</a><span class="font-light max-sm:line-clamp-1 "> calculated at checkout.</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col mt-4 space-y-3">
+                            <div class="flex flex-col items-start space-y-2 ">
+                                <div class="text-slate-400">Colors</div>
+                                <div class="flex items-center space-x-2">
+                                    <div class="px-4 py-1 rounded-2xl cursor-pointer bg-black text-white">
+                                        black
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start space-y-2 ">
+                                <div class="text-slate-400">Size</div>
+                                <div class="flex items-center space-x-2">
+                                    <div class="px-4 py-1 rounded-2xl cursor-pointer bg-black text-white">
+                                        Xl
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start space-y-2">
+                                <div class="text-slate-400">Quantity</div>
+                                <div
+                                    class="bg-white border text-black px-4 py-3 flex items-center justify-between w-[110px] rounded-3xl">
+                                    <button class="cursor-pointer" (click)="decrementQuantity()">-</button>
+                                    <div>{{quantity}}</div>
+                                    <button class="cursor-pointer" (click)="incrementQuantity()">+</button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start space-y-2 ">
+                                <div class="w-full space-y-3">
+                                    <button
+                                        class="px-4 py-3 rounded-3xl cursor-pointer w-full bg-white border-2 text-black"
+                                        (click)="addToCart(product, quantity)" >Add To Cart</button>
+                                    <button
+                                        class="px-4 py-3 rounded-3xl cursor-pointer w-full bg-black text-white">Buy Now</button>
+                                </div>
+                            </div>
+                            <div class="text-normal font-medium text-justify text-slate-400">
+                                {{ product.description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
