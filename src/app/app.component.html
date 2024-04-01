@@ -1,11 +1,11 @@
-<div>
+<div class="">
     <mat-toolbar class="bg-transparent hover:bg-[#f7f4f2]  ">
-        <mat-toolbar-row class="flex justify-between items-center py-4">
+        <mat-toolbar-row class="flex justify-between items-center py-4 ">
             <div>
-                <span class="material-symbols-outlined text-3xl cursor-pointer" (click)="toggleCart()"
+                <mat-icon class="material-symbols-outlined text-3xl cursor-pointer" (click)="toggleCart()"
                     [matBadge]="cartItemCount$ | async" matBadgeColor="accent" matBadgeSize="small" matBadgePosition="above after">
                     shopping_cart
-                </span>
+                </mat-icon>
             </div>
             <span class="contents text-2xl md:text-4xl font-bold tracking-widest">
                 ACHRIF
@@ -14,12 +14,12 @@
     </mat-toolbar>
 
     <mat-sidenav-container fxFlexFill>
-        <mat-sidenav #sidenav mode="over" [(opened)]="showCart" class="w-80 bg-white">
-            <mat-nav-list class="z-50">
-                <div (click)="sidenav.toggle()" href="" mat-list-item class="right-0 absolute top-3">
-                    <span class="material-symbols-outlined">close</span>
+        <mat-sidenav #sidenav mode="over" [(opened)]="showCart" class="w-[30%] max-sm:w-full fixed h-screen max-lg:w-[60%] bg-white">
+            <mat-nav-list class="z-50 h-[80vh]">
+                <div (click)="sidenav.toggle()" href="" mat-list-item class="right-9 cursor-pointer absolute top-3">
+                    <mat-icon>close</mat-icon>
                 </div>
-                <kep-shopping-cart />
+                <kep-shopping-cart class="h-[80vh]" />
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content fxFlexFill class="bg-[#f7f4f2]">

@@ -81,4 +81,10 @@ export class CartService {
     this.itemsInCartSubject.next(currentItems);
     localStorage.setItem('cartItems', JSON.stringify(currentItems));
   }
+
+  public getCartTotal(): Observable<number> {
+    return this.itemsInCartSubject.asObservable().pipe(
+      map(items => items.reduce((total, item) => total + (item.product.price * item.quantity), 0))
+    );
+  }
 }

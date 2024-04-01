@@ -23,9 +23,12 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ShoppingCartComponent {
   items$: Observable<CartItem[]>;
+  cartTotal$: Observable<number>;
+
   private readonly cartService= inject(CartService);
   constructor() {
     this.items$ = this.cartService.getItems();
+    this.cartTotal$ = this.cartService.getCartTotal();
   }
   removeItem(id: number){
     this.cartService.removeFromCart(id);
