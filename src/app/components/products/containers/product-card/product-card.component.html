@@ -8,9 +8,10 @@
       <h1 class="font-medium text-xl  text-justify hover:underline hover:cursor-pointer">{{prod.title}}</h1>
       <h1 class="mt-2">{{prod.price}} MAD</h1>
     </mat-card-content>
-    <mat-card-actions class="bg-[#ede8e5]    ">
+    <mat-card-actions class="bg-[#ede8e5] flex justify-center">
       <button mat-button (click)="addToCart(prod)"
-        class="rounded-3xl text-white absolute bottom-4 m-auto bg-black w-[80%] transition ease-in duration-200   hover:bg-white hover:text-black border-2 border-gray-900 focus:outline-none">Add to cart</button>
+        class="rounded-3xl text-white absolute bottom-4 flex m-auto bg-black w-[80%] ">Add to cart</button>
     </mat-card-actions>
   </mat-card>
 </div>
+<!-- transition ease-in duration-200   hover:bg-white hover:text-black border-2 border-gray-900 focus:outline-none -->

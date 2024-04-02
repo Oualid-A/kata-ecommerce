@@ -1,9 +1,9 @@
-<div class="flex flex-col justify-center md:flex-row md:min-h-screen">
+<div class="flex flex-col justify-center lg:flex-row md:min-h-screen">
     <div class=" w-full bg-white">
         <kep-pay-form />
     </div>
     <section class="relative md:sticky md:top-0 bg-slate-200 w-full h-full md:overflow-y-auto">
-        <div class="px-16 py-10 space-y-6">
+        <div class="px-16 py-10 space-y-6 min-[1000px]:fixed bg-slate-200 h-full">
             <div class="flex justify-between items-center  border-b-[1px] py-2 border-b-stone-400"
                 *ngFor="let item of items$  | async">
                 <div class="flex justify-start items-center space-x-4">

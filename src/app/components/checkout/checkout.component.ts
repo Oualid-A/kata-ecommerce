@@ -11,7 +11,6 @@ import { PayFormComponent } from './containers/pay-form.component';
 @Component({
   selector: 'kep-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css'],
   standalone: true,
   imports: [
     MatCardModule, MatButtonModule, NgFor, AsyncPipe, PayFormComponent
