@@ -1,0 +1,47 @@
+<div class="flex flex-col justify-center md:flex-row md:min-h-screen">
+    <div class=" w-full bg-white">
+        <kep-pay-form />
+    </div>
+    <section class="relative md:sticky md:top-0 bg-slate-200 w-full h-full md:overflow-y-auto">
+        <div class="px-16 py-10 space-y-6">
+            <div class="flex justify-between items-center  border-b-[1px] py-2 border-b-stone-400"
+                *ngFor="let item of items$  | async">
+                <div class="flex justify-start items-center space-x-4">
+                    <img src={{item.product.image}} alt="image"
+                        class="w-20 h-16 rounded-xl object-contain mix-blend-multiply" />
+                    <div class="flex flex-col justify-start items-start">
+                        <h1 class="text-lg font-medium line-clamp-1 ">{{item.product.title}}</h1>
+                        <h2>
+                            Quantity : {{item.quantity}}
+                        </h2>
+                    </div>
+                </div>
+                <div class="">
+                    <h2 class="font-medium text-base max-md:text-sm">{{ item.product.price * item.quantity }} MAD</h2>
+                </div>
+            </div>
+            <div class="flex justify-between items-center gap-4">
+                <input type="text" placeholder="Discount code" class="p-3  w-full" />
+                <button class="bg-white p-3  shadow border font-medium">
+                    Apply
+                </button>
+            </div>
+            <div class="flex flex-col gap-2">
+                <div class="flex justify-between items-center">
+                    <h2>Subtotal</h2>
+                    <h2> {{total$ | async }} MAD</h2>
+                </div>
+                <div class="flex justify-between gap-6 items-center ">
+                    <h2 class="md:text-lg text-sm">
+                        Shipping <span class="md:visible hidden">&#63;</span>
+                    </h2>
+                    <h2 class="md:text-base text-sm md:line-clamp-2 line-clamp-1">Enter shipping address</h2>
+                </div>
+                <div class="flex justify-between items-center">
+                    <h2 class="ms:text-2xl text-base font-semibold">Total</h2>
+                    <h2 class="ms:text-2xl text-base  font-semibold">{{total$ | async}}</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, async } from 'rxjs';
 import { Product } from 'src/app/shared/models/product.model';
 import { CartService } from '../cart.service';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
@@ -7,6 +7,7 @@ import { MatCard, MatCardModule } from '@angular/material/card';
 import { NgModel, ReactiveFormsModule } from '@angular/forms';
 import { CartItem } from 'src/app/shared/models/cartItems.model';
 import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'kep-shopping-cart',
@@ -26,6 +27,8 @@ export class ShoppingCartComponent {
   cartTotal$: Observable<number>;
 
   private readonly cartService= inject(CartService);
+  private readonly router= inject(Router);
+
   constructor() {
     this.items$ = this.cartService.getItems();
     this.cartTotal$ = this.cartService.getCartTotal();
@@ -44,7 +47,7 @@ export class ShoppingCartComponent {
     this.cartService.decreaseQuantity(id);
   }
   checkout(){
-    console.log("Checkout");
-    
+    this.router.navigate(['/checkout' ]);
+
   }
 }

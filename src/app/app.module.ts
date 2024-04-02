@@ -13,6 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { HttpClientModule } from '@angular/common/http';
 import { ShoppingCartComponent } from './components/cart/shopping-cart/shopping-cart.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 const routes: Routes = [
   {
@@ -31,9 +32,17 @@ const routes: Routes = [
       ),
     pathMatch: 'full',
   },
+  {
+    path: 'checkout',
+    loadComponent: () =>
+      import('../app/components/checkout/checkout.component').then(
+        (c) => c.CheckoutComponent
+      ),
+    pathMatch: 'full',
+  },
 ];
 @NgModule({
-  declarations: [AppComponent,  ],
+  declarations: [AppComponent ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
@@ -47,6 +56,7 @@ const routes: Routes = [
     FlexLayoutModule,
     HttpClientModule,
     ShoppingCartComponent,
+    CheckoutComponent,
     MatBadgeModule,
   ],
   providers: [],

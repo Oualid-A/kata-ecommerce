@@ -24,7 +24,7 @@
               <button (click)="decreaseQuantity(item.product.id)" class="flex"
                 [disabled]="item.quantity <= 1"><mat-icon>remove</mat-icon></button>
             </div>
-            <button (click)="removeItem(item.product.id)" class="underline">Remove</button>
+            <button (click)="removeItem(item.product.id)" class="underline-offset-4">Remove</button>
           </mat-card-content>
         </mat-card>
       </div>
@@ -47,10 +47,11 @@
       <p class="text-[13px]">Tax included and shipping calculated at checkout</p>
     </div>
     <div class="flex items-center w-full space-x-4">
-      <button (click)="clearCart()" class="bg-transparent text-black border-2 border-black px-4 py-3 w-full ">Clear
+      <button (click)="clearCart()" [hidden]="!(items$ | async)?.length"
+        class="bg-transparent text-black border-2 border-black px-4 py-3 w-full ">Clear
         Cart</button>
-      <button (click)="checkout()" class="bg-black text-white px-4 py-3 w-full">Checkout</button>
+      <button (click)="checkout()" [disabled]="!(items$ | async)?.length"
+        class="bg-black text-white px-4 py-3 w-full">Checkout</button>
     </div>
-
   </footer>
 </div>
